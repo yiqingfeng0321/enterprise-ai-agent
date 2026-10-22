@@ -1,0 +1,9 @@
+{"customer_id": "CUST-0246", "expected_risk_band": "high", "required_action_keywords": ["support", "usage", "onboarding"], "minimum_review_score": 0.8, "expected_human_approval": true, "reference_probability": 0.99966}
+{"customer_id": "CUST-0165", "expected_risk_band": "high", "required_action_keywords": ["support", "usage", "onboarding"], "minimum_review_score": 0.8, "expected_human_approval": true, "reference_probability": 0.99913}
+{"customer_id": "CUST-0252", "expected_risk_band": "high", "required_action_keywords": ["support", "usage", "onboarding"], "minimum_review_score": 0.8, "expected_human_approval": true, "reference_probability": 0.999033}
+{"customer_id": "CUST-0191", "expected_risk_band": "medium", "required_action_keywords": ["support", "usage", "payment"], "minimum_review_score": 0.8, "expected_human_approval": false, "reference_probability": 0.547186}
+{"customer_id": "CUST-0026", "expected_risk_band": "medium", "required_action_keywords": ["onboarding"], "minimum_review_score": 0.8, "expected_human_approval": false, "reference_probability": 0.554379}
+{"customer_id": "CUST-0198", "expected_risk_band": "medium", "required_action_keywords": ["support", "onboarding"], "minimum_review_score": 0.8, "expected_human_approval": false, "reference_probability": 0.54069}
+{"customer_id": "CUST-0159", "expected_risk_band": "low", "required_action_keywords": ["monitor"], "minimum_review_score": 0.8, "expected_human_approval": false, "reference_probability": 5e-05}
+{"customer_id": "CUST-0300", "expected_risk_band": "low", "required_action_keywords": ["renewal"], "minimum_review_score": 0.8, "expected_human_approval": true, "reference_probability": 8.1e-05}
+{"customer_id": "CUST-0161", "expected_risk_band": "low", "required_action_keywords": ["monitor"], "minimum_review_score": 0.8, "expected_human_approval": false, "reference_probability": 8.2e-05}

@@ -1,0 +1,65 @@
+x-airflow-common: &airflow-common
+  build:
+    context: .
+    dockerfile: infra/airflow/Dockerfile
+  environment: &airflow-environment
+    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "false"
+    AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS: "true"
+    AIRFLOW_CONN_CUSTOMER_CLOUD_API: http://:demo-api-key@mock-cloud:9000
+    AIRFLOW_VAR_CUSTOMER_RISK_PUBLISH_ENABLED: "true"
+    AGENT_PROVIDER: deterministic
+    DATABASE_PATH: /opt/project/artifacts/retention.db
+    MODEL_PATH: /opt/project/artifacts/models/churn_model.joblib
+    MODEL_METADATA_PATH: /opt/project/artifacts/models/churn_model_metadata.json
+    RAW_HISTORY_DATA_PATH: /opt/project/data/raw/customer_history.csv
+    RAW_CURRENT_DATA_PATH: /opt/project/data/raw/current_customers.csv
+    PYTHONPATH: /opt/project
+  volumes:
+    - ./:/opt/project
+    - airflow_home:/opt/airflow
+    - ./infra/airflow/dags:/opt/airflow/dags:ro
+  depends_on:
+    mock-cloud:
+      condition: service_healthy
+
+services:
+  mock-cloud:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.api
+    command:
+      - uvicorn
+      - scripts.mock_cloud_api:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "9000"
+    environment:
+      MOCK_CLOUD_API_KEY: demo-api-key
+      MOCK_CLOUD_SOURCE_PATH: /app/data/raw/current_customers.csv
+      MOCK_CLOUD_PUBLISHED_PATH: /app/artifacts/cloud_demo/latest_predictions.json
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/app
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:9000/health')"
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  airflow:
+    <<: *airflow-common
+    command: standalone
+    ports:
+      - "8080:8080"
+
+volumes:
+  airflow_home:

@@ -1,0 +1,52 @@
+application:
+  name: Enterprise Retention Agent
+  environment: local
+
+agent:
+  provider: microsoft_ollama
+  ollama_model: qwen2.5:7b
+  ollama_base_url: http://localhost:11434
+  allow_deterministic_fallback: false
+  llm_temperature: 0.2
+  llm_max_tokens: 1500
+  llm_timeout_seconds: 240
+  llm_prompt_mode: lean
+  llm_num_ctx: 8192
+  max_review_iterations: 1
+  risk_thresholds:
+    high: 0.70
+    medium: 0.40
+
+model:
+  random_state: 42
+  test_size: 0.25
+  max_iter: 1000
+  regularization_c: 0.5
+
+retrieval:
+  backend: lexical
+  embedding_provider: azure_openai
+  top_k: 3
+  min_score: 0.05
+  chroma_persist_path: artifacts/chroma
+  chroma_collection: retention_knowledge
+  azure_openai_api_version: 2024-02-15-preview
+  azure_openai_deployment: text-embedding-3-large
+  azure_openai_timeout_seconds: 30
+
+memory:
+  max_session_messages: 12
+  max_customer_memories: 8
+
+skills:
+  root_path: skills
+  max_resource_bytes: 100000
+
+storage:
+  database_path: artifacts/retention.db
+  model_path: artifacts/models/churn_model.joblib
+  model_metadata_path: artifacts/models/churn_model_metadata.json
+  raw_history_data_path: data/raw/customer_history.csv
+  raw_current_data_path: data/raw/current_customers.csv
+  knowledge_dir: data/knowledge
+  golden_dataset_path: data/golden/customer_retention_cases.jsonl

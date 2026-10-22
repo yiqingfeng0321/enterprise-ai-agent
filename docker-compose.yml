@@ -1,0 +1,49 @@
+services:
+  mlflow:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.mlflow
+    ports:
+      - "5001:5000"
+    volumes:
+      - mlflow_data:/mlflow
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.api
+    environment:
+      DATABASE_PATH: /app/artifacts/retention.db
+      MODEL_PATH: /app/artifacts/models/churn_model.joblib
+      MODEL_METADATA_PATH: /app/artifacts/models/churn_model_metadata.json
+      AGENT_PROVIDER: deterministic
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      ENABLE_MLFLOW: "false"
+    ports:
+      - "8000:8000"
+    volumes:
+      - runtime_artifacts:/app/artifacts
+
+  ui:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.ui
+    environment:
+      API_URL: http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["ollama"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  mlflow_data:
+  runtime_artifacts:
+  ollama_data:

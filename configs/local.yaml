@@ -1,0 +1,17 @@
+agent:
+  provider: microsoft_ollama
+  ollama_model: qwen2.5:7b
+  ollama_base_url: http://localhost:11434
+  allow_deterministic_fallback: false
+
+storage:
+  database_path: artifacts/retention.db
+  model_path: artifacts/models/churn_model.joblib
+  model_metadata_path: artifacts/models/churn_model_metadata.json
+  raw_history_data_path: data/raw/customer_history.csv
+  raw_current_data_path: data/raw/current_customers.csv
+  knowledge_dir: data/knowledge
+  golden_dataset_path: data/golden/customer_retention_cases.jsonl
+
+retrieval:
+  backend: lexical

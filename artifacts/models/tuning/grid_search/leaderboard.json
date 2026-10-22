@@ -1,0 +1,67 @@
+[
+  {
+    "model_type": "logistic_regression",
+    "score": 0.9575971731448764,
+    "score_metric": "roc_auc",
+    "mlflow_run_id": "63fb68da15614e4f8716e7c20091fa53",
+    "params": {
+      "model_type": "logistic_regression",
+      "random_state": 42,
+      "test_size": 0.25,
+      "training_rows": 900,
+      "max_iter": 300,
+      "regularization_c": 0.5
+    }
+  },
+  {
+    "model_type": "xgboost",
+    "score": 0.9503221783413013,
+    "score_metric": "roc_auc",
+    "mlflow_run_id": "ee2a3b5da5ce44e78346aa923a68139a",
+    "params": {
+      "model_type": "xgboost",
+      "random_state": 42,
+      "test_size": 0.25,
+      "training_rows": 900,
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8
+    }
+  },
+  {
+    "model_type": "random_forest",
+    "score": 0.9457493244647682,
+    "score_metric": "roc_auc",
+    "mlflow_run_id": "2cb67fe8eb774528a19354608d21a238",
+    "params": {
+      "model_type": "random_forest",
+      "random_state": 42,
+      "test_size": 0.25,
+      "training_rows": 900,
+      "n_estimators": 400,
+      "max_depth": "12",
+      "min_samples_leaf": 2
+    }
+  },
+  {
+    "model_type": "deep_learning",
+    "score": 0.9455414674703804,
+    "score_metric": "roc_auc",
+    "mlflow_run_id": "75af550800e245669250cddda81fc974",
+    "params": {
+      "model_type": "deep_learning",
+      "random_state": 42,
+      "test_size": 0.25,
+      "training_rows": 900,
+      "hidden_layer_sizes": [
+        128,
+        64
+      ],
+      "alpha": 0.001,
+      "learning_rate_init": 0.001,
+      "max_iter": 300
+    }
+  }
+]

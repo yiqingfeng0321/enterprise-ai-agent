@@ -1,0 +1,1 @@
+Produce an evidence-grounded retention plan with prioritized actions, owners, rationale, expected impact, approval requirements, guardrails, confidence, and citations. Prefer operational recovery and value realization before discounts.
