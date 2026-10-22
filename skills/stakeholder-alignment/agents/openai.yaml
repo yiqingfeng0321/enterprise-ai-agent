@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stakeholder Alignment"
+  short_description: "Align renewal stakeholders and approvals"
+  default_prompt: "Use $stakeholder-alignment to map owners, decisions, and approval boundaries."

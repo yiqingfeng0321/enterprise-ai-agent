@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory-Aware Strategy"
+  short_description: "Adapt plans using prior intervention outcomes"
+  default_prompt: "Use $memory-aware-strategy to avoid repeating ineffective interventions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Account Diagnosis"
+  short_description: "Ground retention risk in verified evidence"
+  default_prompt: "Use $account-diagnosis to diagnose this account from supplied facts and model evidence."

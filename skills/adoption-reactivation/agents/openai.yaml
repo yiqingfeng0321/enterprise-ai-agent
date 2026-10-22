@@ -1,0 +1,4 @@
+interface:
+  display_name: "Adoption Reactivation"
+  short_description: "Restore workflow adoption and time to value"
+  default_prompt: "Use $adoption-reactivation to design a workflow-specific adoption plan."

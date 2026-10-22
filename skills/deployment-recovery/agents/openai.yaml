@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deployment Recovery"
+  short_description: "Plan recovery from enterprise rollout blockers"
+  default_prompt: "Use $deployment-recovery to build a measurable rollout recovery plan."

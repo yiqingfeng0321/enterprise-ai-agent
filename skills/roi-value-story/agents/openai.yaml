@@ -1,0 +1,4 @@
+interface:
+  display_name: "ROI Value Story"
+  short_description: "Build evidence-based value and ROI narratives"
+  default_prompt: "Use $roi-value-story to create a defensible renewal value narrative."
